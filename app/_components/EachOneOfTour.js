@@ -87,7 +87,7 @@ export default function EachOneOfTour({ tour }) {
               {tour.guides.map((guide) => (
                 <div key={guide._id} className="overview-box__detail">
                   <Image
-                    src={`/img/users/${guide.photo}`}
+                    src={`${CLOUDINARY_BASE}/${guide.photo}`}
                     alt={guide.name}
                     width={56}
                     height={56}
