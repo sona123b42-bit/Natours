@@ -185,6 +185,30 @@ export default function EachOneOfTour({ tour }) {
               <button
                 className="btn btn--green span-all-rows"
                 data-tour-id={tour.id}
+                onClick={async () => {
+                  try {
+                    // 1️⃣ Call your backend with cookies included
+                    const res = await fetch(
+                      `${process.env.NEXT_PUBLIC_BASE_URL}booking/create-checkout-session/${tour.id}`,
+                      {
+                        method: "POST",
+                        credentials: "include", // ✅ this sends cookies!
+                      }
+                    );
+
+                    const data = await res.json();
+
+                    if (data.status === "success") {
+                      // 2️⃣ Redirect to Stripe Checkout
+                      window.location.href = data.session.url;
+                    } else {
+                      alert("Something went wrong!");
+                    }
+                  } catch (err) {
+                    console.error(err);
+                    alert("Checkout failed!");
+                  }
+                }}
               >
                 Book tour now!
               </button>

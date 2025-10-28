@@ -1,7 +1,6 @@
 import Link from "next/link";
 const CLOUDINARY_BASE = process.env.NEXT_PUBLIC_CLOUDINARY_BASE;
 export default function Navigation({ user }) {
-  console.log(user);
   return (
     <nav className="z-10 text-xl">
       <ul className="flex gap-16 items-center text-white">

@@ -73,10 +73,16 @@ function LoginForm() {
               minLength={8}
             />
           </div>
+          <div className="-mt-9 mb-9 text-right text-lg hover:text-[#2e864b] text-[#55c57a]">
+            <a href="/forgotpassword">Forgot your password?</a>
+          </div>
 
           <div className="form__group">
             <button type="submit" className="btn btn--green">
               {!isPending ? "Login" : <SpinnerMini />}
+            </button>
+            <button className="btn bg-gray-200 text-white ml-5">
+              <a href="/signup">Sign up</a>
             </button>
           </div>
         </form>

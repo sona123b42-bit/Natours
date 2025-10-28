@@ -1,81 +1,47 @@
 "use client";
-
 import { useState } from "react";
-import toast from "react-hot-toast";
 import SpinnerMini from "./SpinnerMini";
 import "@/app/_styles/style.css";
-
+import toast from "react-hot-toast";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-function SignupForm() {
+export default function ResetPasswordForm({ token }) {
   const [isPending, setIsPending] = useState(false);
-
   async function handleSubmit(e) {
     e.preventDefault(); // stop default /login POST
     const formData = new FormData(e.currentTarget);
-    const name = formData.get("name");
-    const email = formData.get("email");
+
     const password = formData.get("password");
     const passwordConfirm = formData.get("confirmPassword");
 
     try {
       setIsPending(true);
-      const res = await fetch(`${BASE_URL}users/signup`, {
-        method: "POST",
+      const res = await fetch(`${BASE_URL}users/resetPassword/${token}`, {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include", // ✅ include cookies
-        body: JSON.stringify({ name, email, password, passwordConfirm }),
+        body: JSON.stringify({ password, passwordConfirm }),
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Invalid email or password");
+      if (!res.ok) throw new Error(data.message || "Password is Invalid");
 
-      toast.success("sign in successfully!");
+      toast.success("Password reset successful!");
       // optionally redirect:
       setTimeout(() => {
         window.location.href = "/";
       }, 1200); //
     } catch (err) {
-      toast.error(err.message || "sign failed");
+      toast.error(err.message || "Login failed");
     } finally {
       setIsPending(false);
     }
   }
-
   return (
     <main className="main">
       <div className="login-form">
-        <h2 className="heading-secondary ma-bt-lg">Sign up to your account</h2>
+        <h2 className="heading-secondary ma-bt-lg">Reset your password</h2>
 
         <form className="form form--login" onSubmit={handleSubmit}>
-          <div className="form__group">
-            <label htmlFor="name" className="form__label">
-              Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="name"
-              disabled={isPending}
-              className="form__input"
-              placeholder="your name"
-              required
-            />
-          </div>
-          <div className="form__group">
-            <label htmlFor="email" className="form__label">
-              Email address
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              disabled={isPending}
-              className="form__input"
-              placeholder="you@example.com"
-              required
-            />
-          </div>
-
           <div className="form__group ma-bt-md">
             <label htmlFor="password" className="form__label">
               Password
@@ -97,7 +63,7 @@ function SignupForm() {
             </label>
             <input
               id="confirmPassword"
-              type="confirmPassword"
+              type="password"
               name="confirmPassword"
               disabled={isPending}
               className="form__input"
@@ -109,10 +75,7 @@ function SignupForm() {
 
           <div className="form__group">
             <button type="submit" className="btn btn--green">
-              {!isPending ? "Sign up" : <SpinnerMini />}
-            </button>
-            <button className="btn bg-gray-200 text-white ml-5">
-              <a href="/login">Log in</a>
+              {!isPending ? "Reset password" : <SpinnerMini />}
             </button>
           </div>
         </form>
@@ -120,5 +83,3 @@ function SignupForm() {
     </main>
   );
 }
-
-export default SignupForm;

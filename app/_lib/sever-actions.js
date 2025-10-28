@@ -12,7 +12,7 @@ export async function getSessionClient() {
     const cookieHeader = Array.from(cookieStore.getAll())
       .map(({ name, value }) => `${name}=${value}`)
       .join("; ");
-    console.log("🔍 Cookies received:", cookieHeader);
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}users/isLoggedIn`,
       {

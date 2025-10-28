@@ -16,6 +16,9 @@ const nextConfig = {
       bodySizeLimit: "10mb",
     },
   },
+  compiler: {
+    styledComponents: true,
+  },
 };
 
 export default nextConfig;

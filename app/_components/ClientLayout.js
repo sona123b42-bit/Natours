@@ -1,18 +1,30 @@
 "use client";
-
-import { usePathname } from "next/navigation";
-import Header from "./Header";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
+import Header from "@/app/_components/Header";
 
 export default function ClientLayout({ user, children }) {
+  const router = useRouter();
   const pathname = usePathname();
 
-  // Routes where header should be hidden
-  const noHeaderRoutes = ["/login", "/signup", "/account/reset"];
-  const shouldShowHeader = !noHeaderRoutes.includes(pathname);
+  // all routes that should hide header + be accessible only to logged-out users
+  const authRoutes = ["/login", "/signup", "/forgotpassword", "/resetPassword"];
+
+  const isAuthRoute = authRoutes.some((r) =>
+    pathname.toLowerCase().startsWith(r.toLowerCase())
+  );
+
+  useEffect(() => {
+    if (user && isAuthRoute) router.replace("/");
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, pathname]);
+
+  const hideHeader = isAuthRoute;
 
   return (
     <>
-      {shouldShowHeader && <Header user={user} />}
+      {!hideHeader && <Header user={user} />}
       <div className="w-full mx-auto p-[40px]">{children}</div>
     </>
   );
