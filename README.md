@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Natours – Adventure Tour Booking Platform
 
-## Getting Started
+Natours is a modern full-stack web application for discovering, booking, and managing adventure tours worldwide.
+Built with a secure RESTful Node.js backend and a performant Next.js frontend, it demonstrates production-grade authentication, dynamic routing, and responsive design.
+Tech Stack
+Frontend
 
-First, run the development server:
+Next.js 15 (React 19) – server components, SSR/CSR, and Turbopack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Tailwind CSS 4 – modern, responsive styling
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+React Query + Supabase (optional integration) – data-fetching and caching
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Styled-Components – isolated component styling
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+React Hot Toast – clean notification UI
 
-## Learn More
+Backend
 
-To learn more about Next.js, take a look at the following resources:
+Node.js + Express.js – RESTful API design
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+MongoDB + Mongoose – flexible data modeling
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+JWT Auth + Cookies – secure login/session handling
 
-## Deploy on Vercel
+SendGrid / Nodemailer – transactional email for password reset
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+bcrypt.js + crypto – password hashing and token encryption
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Authentication & Security
+
+User signup, login, logout
+
+JWT authentication with secure, httpOnly cookies
+
+Role-based access control (admin, user, guide)
+
+“Forgot password” / “Reset password” flow with email verification
+
+Encrypted password storage (bcrypt + SHA-256)
+
+ours & Bookings
+
+Browse all available tours
+
+View detailed tour pages (price, guides, duration, description)
+
+Book tours (frontend integration with API)
+
+Responsive layout with mobile-first design
+
+User Account
+
+Update name, email, password, and profile photo
+
+Token refresh and password-change flow
+
+Persistent sessions across reloads
