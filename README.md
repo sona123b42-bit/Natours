@@ -1,58 +1,63 @@
-Natours – Adventure Tour Booking Platform
+# 🏞️ Natours — Adventure Tour Booking Platform
 
-Natours is a modern full-stack web application for discovering, booking, and managing adventure tours worldwide.
-Built with a secure RESTful Node.js backend and a performant Next.js frontend, it demonstrates production-grade authentication, dynamic routing, and responsive design.
-Tech Stack
-Frontend
+**Natours** is a modern full-stack web application that allows users to **discover, book, and manage adventure tours** around the world.  
+It combines a secure RESTful **Node.js backend** with a fast and responsive **Next.js frontend**, featuring production-grade authentication, API security, and mobile-first design.
 
-Next.js 15 (React 19) – server components, SSR/CSR, and Turbopack
+> “Because adventure shouldn’t be limited to your imagination.” 🌍
 
-Tailwind CSS 4 – modern, responsive styling
+---
 
-React Query + Supabase (optional integration) – data-fetching and caching
+## 🚀 Tech Stack
 
-Styled-Components – isolated component styling
+### 🖥️ Frontend
+- ⚡ **Next.js 15 (React 19)** – Server Components, SSR/CSR, and Turbopack  
+- 🎨 **Tailwind CSS 4** – modern, responsive styling  
+- 🔁 **React Query** – smart data caching and background updates  
+- 💅 **Styled-Components** – scoped, dynamic component styling  
+- 🔔 **React Hot Toast** – elegant notifications  
 
-React Hot Toast – clean notification UI
+### ⚙️ Backend
+- 🧠 **Node.js + Express.js** – structured REST API  
+- 🗄️ **MongoDB + Mongoose** – flexible, schema-based data modeling  
+- 🔐 **JWT Auth + Cookies** – secure login/session handling  
+- 📧 **Nodemailer / SendGrid** – email service for password reset  
+- 🔑 **bcrypt.js + crypto** – password hashing and token encryption  
 
-Backend
+---
 
-Node.js + Express.js – RESTful API design
+## 🔒 Key Features
 
-MongoDB + Mongoose – flexible data modeling
+### Authentication & Security
+- Secure **signup**, **login**, and **logout**
+- **JWT authentication** stored in `httpOnly` cookies
+- **Forgot / Reset Password** flow with time-limited email link  
+- **Role-based access control** (`user`, `guide`, `admin`)
+- Passwords hashed with **bcrypt** and auto-invalidated on change
 
-JWT Auth + Cookies – secure login/session handling
+### Tours & Bookings
+- Browse and view detailed tours  
+- Responsive, mobile-first design  
+- Future integration for **Stripe payments**
 
-SendGrid / Nodemailer – transactional email for password reset
+### User Account
+- Update name, email, password, and profile photo  
+- Persisted sessions with cookie-based login  
+- Real-time toast notifications for all major actions  
 
-bcrypt.js + crypto – password hashing and token encryption
+---
 
-Authentication & Security
+## ⚙️ Environment Setup
 
-User signup, login, logout
+Create a `.env` file in your backend root (not committed to GitHub):
 
-JWT authentication with secure, httpOnly cookies
+```env
+NODE_ENV=development
+PORT=8000
+DATABASE=<your MongoDB connection string>
+JWT_SECRET=<your secret key>
+JWT_EXPIRES_IN=90d
+JWT_COOKIE_EXPIRES_IN=90
+EMAIL_USERNAME=<your email or API user>
+EMAIL_PASSWORD=<your email password or app password>
+FRONTEND_URL=http://localhost:3000
 
-Role-based access control (admin, user, guide)
-
-“Forgot password” / “Reset password” flow with email verification
-
-Encrypted password storage (bcrypt + SHA-256)
-
-ours & Bookings
-
-Browse all available tours
-
-View detailed tour pages (price, guides, duration, description)
-
-Book tours (frontend integration with API)
-
-Responsive layout with mobile-first design
-
-User Account
-
-Update name, email, password, and profile photo
-
-Token refresh and password-change flow
-
-Persistent sessions across reloads
